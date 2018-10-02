@@ -101,7 +101,7 @@ public class cconexionatallerf {
             e.printStackTrace();
         } finally {
             // cerrar la Conexion
-            conecta.close();
+          //  conecta.close();
         }
 
         return insertar;
@@ -132,7 +132,7 @@ public class cconexionatallerf {
             e.printStackTrace();
         } finally {
             // cerrar la Conexion
-            conecta.close();
+          //  conecta.close();
         }
 
         return insertar;
@@ -162,7 +162,7 @@ public class cconexionatallerf {
             e.printStackTrace();
         } finally {
             // cerrar la Conexion
-            conecta.close();
+         //   conecta.close();
         }
 
         return insertar;
@@ -192,7 +192,7 @@ public class cconexionatallerf {
             e.printStackTrace();
         } finally {
             // cerrar la Conexion
-            conecta.close();
+          //  conecta.close();
         }
 
         return insertar;
@@ -222,7 +222,7 @@ public class cconexionatallerf {
             e.printStackTrace();
         } finally {
             // cerrar la Conexion
-            conecta.close();
+          //  conecta.close();
         }
 
         return insertar;
@@ -255,7 +255,7 @@ public class cconexionatallerf {
             e.printStackTrace();
         } finally {
             // cerrar la Conexion
-            conecta.close();
+          //  conecta.close();
         }
 
         return insertar;
@@ -265,7 +265,7 @@ public class cconexionatallerf {
     //INSERTA EL ESTADO DEL AUTO DEL AUTO
     
     public int insertarEstadodelAuto(String estado) throws SQLException {
-
+        
         int insertar = 0;
         String dato="info";
 
@@ -287,7 +287,7 @@ public class cconexionatallerf {
             e.printStackTrace();
         } finally {
             // cerrar la Conexion
-            conecta.close();
+          //  conecta.close();
         }
 
         return insertar;
@@ -327,7 +327,7 @@ public class cconexionatallerf {
             e.printStackTrace();
         } finally {
             // cerrar la Conexion
-            conecta.close();
+          //  conecta.close();
         }
 
         return insertar;
@@ -358,7 +358,7 @@ public class cconexionatallerf {
             e.printStackTrace();
         } finally {
             // cerrar la Conexion
-            conecta.close();
+          //  conecta.close();
         }
 
         return insertar;

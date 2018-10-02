@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Tipo de Tajeta</title>
+        <title>Tajeta</title>
     </head>
     <body>
         <h1>Tipo de Tarjeta!</h1>
