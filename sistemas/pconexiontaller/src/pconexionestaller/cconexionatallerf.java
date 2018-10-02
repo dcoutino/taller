@@ -287,7 +287,7 @@ public class cconexionatallerf {
             e.printStackTrace();
         } finally {
             // cerrar la Conexion
-          //  conecta.close();
+          //  conecta.close(); // SE CERRARON, PORQUE ERAN DE PRUEBA
         }
 
         return insertar;
@@ -334,6 +334,46 @@ public class cconexionatallerf {
     }//fin SERIE DE FACTURA INICIO Y FIN
 
     
+    
+    //MODULOS PARA INSERTAR LOS SERVICIOS
+    
+    
+    
+    public int insertarServicios(String serie, String inicio, String fin ) throws SQLException {
+
+        int insertar = 0;
+        int inicioserie = Integer.parseInt(inicio);
+         int finserie = Integer.parseInt(fin);
+        String dato="info";
+
+        try {
+            
+            
+            conecta.setAutoCommit(false);
+
+            insertarSerieFacturas.setString(1, serie);
+            insertarSerieFacturas.setInt(2, inicioserie);
+            insertarSerieFacturas.setInt(3, finserie);
+            insertarSerieFacturas.setInt(4, 0);
+            insertarSerieFacturas.execute();
+
+           
+            conecta.commit();
+          //  System.out.println("Insertado con exito");
+            insertar = 1;
+
+        } catch (Exception e) {
+
+            conecta.rollback();
+
+            e.printStackTrace();
+        } finally {
+            // cerrar la Conexion
+          //  conecta.close();
+        }
+
+        return insertar;
+    }//fin SERIE DE FACTURA INICIO Y FIN
     
     //INSERTA TRANSMISION DE AUTO
     public int insertarTransmision(String transmision) throws SQLException {
