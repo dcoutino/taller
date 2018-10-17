@@ -22,8 +22,8 @@
             
         </form>
         
-        <BR/><a href="index.html">Borrar Cliente</a>
-        <BR/><a href="index.html">Modificar Cliente</a>
+        <BR/><a href="index2.html">Borrar Cliente</a>
+        <BR/><a href="index2.html">Modificar Cliente</a>
         
     </body>
 </html>

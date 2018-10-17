@@ -46,8 +46,8 @@
             
         </form>
         
-        <BR/><a href="index.html">Borrar Servicio</a>
-        <BR/><a href="index.html">Modificar Servicio</a>
+        <BR/><a href="index2.html">Borrar Servicio</a>
+        <BR/><a href="index2.html">Modificar Servicio</a>
         
     </body>
 </html>

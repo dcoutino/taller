@@ -54,8 +54,8 @@
             
         </form>
         
-        <BR/><a href="index.html">Borrar Empleado</a>
-        <BR/><a href="index.html">Modificar Empleado</a>
+        <BR/><a href="index2.html">Borrar Empleado</a>
+        <BR/><a href="index2.html">Modificar Empleado</a>
         
     </body>
 </html>

@@ -1,5 +1,6 @@
 
 
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,6 +26,7 @@ String nit= request.getParameter("txtnitcliente");
 
 
  int filas = datos.eliminarcliente(nit);
+ 
   
  
  if (filas ==1 )

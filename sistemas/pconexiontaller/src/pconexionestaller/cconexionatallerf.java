@@ -41,6 +41,9 @@ public class cconexionatallerf {
     private CallableStatement insertarEmpleado = null;
     private CallableStatement insertarvehiculonuevo = null;
     
+    //ACTUALIZACIONES
+        private CallableStatement actualizarCliente = null;
+    
     //BORAR
     private CallableStatement borrarcliente = null;
     
@@ -70,8 +73,10 @@ public class cconexionatallerf {
             insertarEmpleado= conecta.prepareCall("{call insertarEmpleado(?,?,?,?,?,?,?,?)}");         //INSERTA CLIENTE
             insertarvehiculonuevo= conecta.prepareCall("{call insertarVehiculo(?,?,?,?,?,?,?,?)}");         //INSERTA NUEVO VEHICULO
             
-          
-            
+        //BLOQUE UTILIZADO PARA ACTUALIZAR INFORMACION DE TABLAS 
+        
+        //ACTUALIZA TABLA CLIENTES
+         actualizarCliente = conecta.prepareCall("{call modificarCliente(?)}");   
             
         //BLOQUE UTILIZADO PARA BORRAR INFORMACION DE TABLAS
         
@@ -613,8 +618,6 @@ public class cconexionatallerf {
     }//fin insertarvehiculos
     
     
-    
-    
     //clase para buscar informacion en tablas, que llenan combo box en jsp
     //recibe el nombre de la bd, para luego transferir la informacion
     
@@ -627,6 +630,21 @@ public class cconexionatallerf {
         return  rs;
     }//fin mostrarinformacionBD
     
+    public ResultSet jsp(String bd) {
+        ResultSet retorna =null;
+        return retorna;
+    }//fin jsp
+    
+     public ResultSet mostrarinformacionBDparaJSP(String bd, String  campobd,String campocondicion) throws SQLException
+    {
+        seleccionardatosbd= conecta.prepareStatement(
+        "SELECT * FROM "+ bd + " where "+ campobd + " = '"+campocondicion+"' " ); 
+           ResultSet rs;
+       rs = seleccionardatosbd.executeQuery();
+       rs.first();
+       return  rs;
+        
+    }//fin mostrarinformacionBDonParametros2
     
     //busca informacion en la bd, cuando tiene un parametro, con cualquier tabla
     
@@ -641,9 +659,6 @@ public class cconexionatallerf {
         return  rs.getInt(1) ;
     }//fin mostrarinformacionBD
     
-     
-     
-     
      
      
  //METODOS PARA ELIMINACION DE INFORMACION
@@ -693,7 +708,59 @@ public class cconexionatallerf {
     }//fin eliminarcliente
     
     
-     
+   //METOS PARA ELIMINAR
+    
+    
+    
+    
+    
+  //*******************************************************************************************
+  //METODOS PARA ACTUALIZACIONES
+    
+    public int actualizarCliente(String id,String nombres, String apellidos,String telefono,String correo,String nit,String direccion,
+            String tipocliente,String bd,String campo) throws SQLException {
+
+        int actualiza = 0;
+        int idcliente = Integer.parseInt(id);
+
+        try {
+            conecta.setAutoCommit(false);
+            
+            //busca el registro de un dato requerrido, segun tabla y campo desao
+            
+            actualiza = mostrarinformacionBDonParametros(bd,campo,tipocliente);
+            
+            //envia informacion al procedimiento almacenado
+
+            actualizarCliente.setString(1, nombres);
+            actualizarCliente.setString(2, apellidos);
+            actualizarCliente.setString(3, telefono);
+            actualizarCliente.setString(4, correo);
+            actualizarCliente.setString(5, nit);
+            actualizarCliente.setString(6, direccion);
+            actualizarCliente.setInt(7, actualiza);
+            actualizarCliente.setInt(8, idcliente);
+            actualizarCliente.execute();
+
+           
+            conecta.commit();
+         
+            actualiza = 1;
+
+        } catch (Exception e) {
+
+            conecta.rollback();
+
+            e.printStackTrace();
+        } finally {
+            // cerrar la Conexion
+          //  conecta.close();
+        }
+
+        return actualiza;
+    }//fin insertarTipodetARJETA 
+    
+    
      
  //FIN CLASE PRINCIPAL    
 }//fin cconexionataller

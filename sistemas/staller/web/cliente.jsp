@@ -51,8 +51,9 @@
             
         </form>
         
-        <BR/><a href="borrarcliente.html">Borrar Cliente</a>
-        <BR/><a href="index.html">Modificar Cliente</a>
+        <BR/><a href="clientesborra.jsp">Borrar Cliente</a>
+        <BR/><a href="clienteactualiza.html">Modificar Cliente</a>
+        <BR/><a href="index.html">Inicio</a>
         
     </body>
 </html>
