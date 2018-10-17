@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="style.css" />
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script src="js/jquery.autocomplete.js"></script>
+<script language="javascript" type="text/javascript">
+    <script src="jquery-3.3.1.min.js"></script>
+        
+     <script language="javascript" type="text/javascript">
+
+jQuery(function(){
+$("#txtplacas").autocomplete("busquedasenbds.jsp");
+});
+</script>
+
+    </head>
+    <body>
+        <div>TODO write content</div>
+   <h1>Ingreso Datos de la Orden!</h1>
+        <form id="frmordenes" name="frmvehiculo" action="ordenesR.jsp">
+            Codigo de Orden<input type="text" name="txtcodigoorden" value="" size="20" />
+            Placa del Vehiculo<input type="text" name="txtplacas"  id="txtplacas"  value="" size="14" />
+            Nit Cliente<input type="text" name="txtnit" value="" size="14" />
+           <Br>  <Br>
+            Kilometraje del Vehiculo<input type="text" name="txtkilometraje" value="" size="14" />
+            Observaciones<input type="text" name="txtobservaciones" value="" size="50" />
+           
+            <Br>  <Br>
+            Observaciones<input type="text" name="txtobservaciones" value="" size="70" />
+             
+           
+            
+            
+            <input type="submit" value="Guardar Informacion" name="btnenviar" />
+            
+        </form>
+        
+        <BR/><a href="index.html">Borrar Empleado</a>
+        <BR/><a href="index.html">Modificar Empleado</a>
+             
+        
+    </body>
+</html>

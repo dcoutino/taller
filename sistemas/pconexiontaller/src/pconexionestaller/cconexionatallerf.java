@@ -23,6 +23,9 @@ public class cconexionatallerf {
     public static Connection conecta;
 
     private PreparedStatement seleccionardatosbd = null;
+    
+    //INSERTAR
+    
     private CallableStatement insertartiipodeempleado = null;
     private CallableStatement insertartiipodecliente = null;
     private CallableStatement insertartiipodepago = null;
@@ -33,6 +36,13 @@ public class cconexionatallerf {
     private CallableStatement insertarSerieFacturas = null;
     private CallableStatement insertarTransmision = null;
     private CallableStatement insertarCliente = null;
+    private CallableStatement insertarServicio = null;
+    private CallableStatement insertarservicios = null;
+    private CallableStatement insertarEmpleado = null;
+    private CallableStatement insertarvehiculonuevo = null;
+    
+    //BORAR
+    private CallableStatement borrarcliente = null;
     
     
     public cconexionatallerf() {
@@ -56,8 +66,16 @@ public class cconexionatallerf {
             insertarSerieFacturas= conecta.prepareCall("{call insertarFactura_Serie(?,?,?,?)}");         //INSERTA SERIE DE FACTURA INICIO Y FIN
             insertarTransmision= conecta.prepareCall("{call insertarTransmision(?)}");         //INSERTA TRANSMISION DEL AUTO
             insertarCliente= conecta.prepareCall("{call insertarCliente(?,?,?,?,?,?,?)}");         //INSERTA CLIENTE
-             
+            insertarservicios= conecta.prepareCall("{call insertarServicio(?,?,?)}");         //INSERTA CLIENTE
+            insertarEmpleado= conecta.prepareCall("{call insertarEmpleado(?,?,?,?,?,?,?,?)}");         //INSERTA CLIENTE
+            insertarvehiculonuevo= conecta.prepareCall("{call insertarVehiculo(?,?,?,?,?,?,?,?)}");         //INSERTA NUEVO VEHICULO
             
+          
+            
+            
+        //BLOQUE UTILIZADO PARA BORRAR INFORMACION DE TABLAS
+        
+        borrarcliente= conecta.prepareCall("{call eliminarCliente(?)}");         //ELIMINA CLIENTE
             
         }//try
         catch (SQLException ex) {
@@ -339,7 +357,7 @@ public class cconexionatallerf {
     
     
     
-    public int insertarServicios(String serie, String inicio, String fin ) throws SQLException {
+    public int insertarServiciosvarios(String serie, String inicio, String fin ) throws SQLException {
 
         int insertar = 0;
         int inicioserie = Integer.parseInt(inicio);
@@ -449,6 +467,153 @@ public class cconexionatallerf {
     }//fin insertarTipodetARJETA 
     
     
+    //INSERTA CLIENTE
+    public int insertarEmpleado(String nombres, String apellidos,String telefono,String correo,String dpi,
+            String direccion,String tipoempleado,String bd,String campo,String Sexo) throws SQLException {
+
+        
+        int insertar = 0;
+        
+
+        try {
+            conecta.setAutoCommit(false);
+            
+            //busca el registro de un dato requerrido, segun tabla y campo desao
+            
+            insertar = mostrarinformacionBDonParametros(bd,campo,tipoempleado);
+            
+            //envia informacion al procedimiento almacenado
+
+            insertarEmpleado.setString(1, nombres);
+            insertarEmpleado.setString(2, apellidos);
+            insertarEmpleado.setString(3, direccion);
+            insertarEmpleado.setString(4, telefono);
+            insertarEmpleado.setString(5, dpi);
+            insertarEmpleado.setString(6, Sexo);
+            insertarEmpleado.setString(7, correo);
+            insertarEmpleado.setInt(8, insertar);
+            insertarEmpleado.execute();
+
+           
+            conecta.commit();
+         
+            insertar = 1;
+
+        } catch (Exception e) {
+
+            conecta.rollback();
+
+            e.printStackTrace();
+        } finally {
+            // cerrar la Conexion
+          //  conecta.close();
+        }
+
+        return insertar;
+    }//fin insertarEMPLEADO
+    
+    
+    
+    //INSERTA SERVIIO
+    public int InsertarServicios(String descripcion, String costos,
+            String departamento,String bd,String campo) throws SQLException {
+
+        int insertar = 0;
+        float costo = Float.parseFloat(costos);
+        
+
+        try {
+            conecta.setAutoCommit(false);
+            
+            //busca el registro de un dato requerrido, segun tabla y campo desao
+            
+            insertar = mostrarinformacionBDonParametros(bd,campo,departamento);
+            
+            //envia informacion al procedimiento almacenado
+
+            insertarservicios.setString(1, descripcion);
+            insertarservicios.setInt(2, insertar);
+            insertarservicios.setFloat(3, costo); 
+            insertarservicios.execute();
+
+           
+            conecta.commit();
+         
+            insertar = 1;
+
+        } catch (Exception e) {
+
+            conecta.rollback();
+
+            e.printStackTrace();
+        } finally {
+            // cerrar la Conexion
+          //  conecta.close();
+        }
+
+        return insertar;
+    }//fin insertarServivicio
+    
+    
+    //INSERTA insertarvehiculos
+    public int insertarVehiculos(String linea,String modelo,String placa,String color,String observaciones,
+            String campomarca, String camptransimision,String campoempleado) throws SQLException {
+
+        
+        int insertar = 0;
+        int idmarca = 0;
+        int idtransmision = 0;
+        int idcliente = 0;
+        String bd="tblmarca";
+        String campo ="Descripcion";
+        
+
+        try {
+            conecta.setAutoCommit(false);
+            
+            //busca el registro de un dato requerrido, segun tabla y campo desao
+            
+            idmarca = mostrarinformacionBDonParametros(bd,campo,campomarca);
+            
+            bd="tbltransmision";
+            idtransmision = mostrarinformacionBDonParametros(bd,campo,camptransimision);
+            
+            bd="tblcliente";
+            campo ="Nit";
+            idcliente = mostrarinformacionBDonParametros(bd,campo,campoempleado);
+            
+            //envia informacion al procedimiento almacenado
+
+            insertarvehiculonuevo.setString(1, linea);
+            insertarvehiculonuevo.setString(2, modelo);
+            insertarvehiculonuevo.setString(3, placa);
+            insertarvehiculonuevo.setString(4, color);
+            insertarvehiculonuevo.setString(5, observaciones);
+            insertarvehiculonuevo.setInt(6, idmarca);
+            insertarvehiculonuevo.setInt(7, idtransmision);
+            insertarvehiculonuevo.setInt(8, idcliente);
+            insertarvehiculonuevo.execute();
+
+           
+            conecta.commit();
+         
+            insertar = 1;
+
+        } catch (Exception e) {
+
+            conecta.rollback();
+
+            e.printStackTrace();
+        } finally {
+            // cerrar la Conexion
+          //  conecta.close();
+        }
+
+        return insertar;
+    }//fin insertarvehiculos
+    
+    
+    
     
     //clase para buscar informacion en tablas, que llenan combo box en jsp
     //recibe el nombre de la bd, para luego transferir la informacion
@@ -476,4 +641,59 @@ public class cconexionatallerf {
         return  rs.getInt(1) ;
     }//fin mostrarinformacionBD
     
+     
+     
+     
+     
+     
+ //METODOS PARA ELIMINACION DE INFORMACION
+     
+     //INSERTA insertarvehiculos
+    public int eliminarcliente(String nit) throws SQLException {
+
+        int borrar=0;
+        String bd ="tblcliente";
+        String campo ="Nit";
+        int id =0;
+        
+        
+        
+
+        try {
+            conecta.setAutoCommit(false);
+            
+            
+          //busca el registro de un dato requerrido, segun tabla y campo desao
+            
+            
+            id = mostrarinformacionBDonParametros(bd,campo,nit);
+            
+            //envia informacion al procedimiento almacenado
+            
+            borrarcliente.setInt(1, id); 
+            
+             borrarcliente.execute();
+
+           
+            conecta.commit();
+         
+            borrar = 1;
+
+        } catch (Exception e) {
+
+            conecta.rollback();
+
+            e.printStackTrace();
+        } finally {
+            // cerrar la Conexion
+          //  conecta.close();
+        }
+
+        return borrar;
+    }//fin eliminarcliente
+    
+    
+     
+     
+ //FIN CLASE PRINCIPAL    
 }//fin cconexionataller

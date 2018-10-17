@@ -1,0 +1,54 @@
+.ac_results { .ac_results {
+	relleno: 0px; padding: 0px;
+	borde: 1px sólido # 84a10b; border: 1px solid #84a10b;
+	color de fondo: # 84a10b; background-color: #84a10b;
+	desbordamiento: oculto; overflow: hidden;
+} }
+.ac_results ul { .ac_results ul {
+	ancho: 100%; width: 100%;
+	list-style-position: afuera; list-style-position: outside;
+	estilo de lista: ninguno; list-style: none;
+	relleno: 0; padding: 0;
+	margen: 0; margin: 0;
+} }
+.ac_results li { .ac_results li {
+	margen: 0px; margin: 0px;
+	relleno: 2px 5px; padding: 2px 5px;
+	cursor: por defecto; cursor: default;
+	bloqueo de pantalla; display: block;
+	color: #fff; color: #fff;
+	Familia tipográfica: verdana; font-family:verdana;
+	/ * /*
+	si el ancho será 100% aparecerá una barra de desplazamiento horizontal if width will be 100% horizontal scrollbar will apear
+	cuando se utilizará el modo de desplazamiento when scroll mode will be used
+	* / */
+	/ * ancho: 100%; * / /*width: 100%;*/
+	tamaño de fuente: 12px; font-size: 12px;
+	/ * /*
+	Es muy importante, si la altura de línea no está establecida o establecida it is very important, if line-height not setted or setted
+	en unidades relativas se romperá el desplazamiento en Firefox in relative units scroll will be broken in firefox
+	* / */
+	altura de línea: 16px; line-height: 16px;
+	desbordamiento: oculto; overflow: hidden;
+} }
+.ac_loading { .ac_loading {
+	fondo: url blanco ('../ images / indicator.gif') centro derecha no repetición; background: white url('../images/indicator.gif') right center no-repeat;
+} }
+.ac_odd { .ac_odd {
+	color de fondo: # 84a10b; background-color: #84a10b;
+	color: #ffffff; color: #ffffff;
+} }
+.una tapa { .ac_over {
+	color de fondo: # 5a6b13; background-color: #5a6b13;
+	color: #ffffff; color: #ffffff;
+} }
+.texto de entrada{ .input_text{
+	Familia tipográfica: Arial, Helvetica, sans-serif; font-family:Arial, Helvetica, sans-serif;
+	tamaño de fuente: 12px; font-size:12px;
+	borde: 1px sólido # 84a10b; border:1px solid #84a10b;
+	relleno: 2px; padding:2px;
+	ancho: 150px; width:150px;
+	color: # 000; color:#000;
+	fondo: url blanco (../ images / search.png) sin repetición 3px 2px; background:white url(../images/search.png) no-repeat 3px 2px;
+	relleno-izquierda: 17px; padding-left:17px;
+} } 

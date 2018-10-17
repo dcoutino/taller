@@ -51,7 +51,7 @@
             
         </form>
         
-        <BR/><a href="index.html">Borrar Cliente</a>
+        <BR/><a href="borrarcliente.html">Borrar Cliente</a>
         <BR/><a href="index.html">Modificar Cliente</a>
         
     </body>
